@@ -17,6 +17,15 @@ class ImageTest {
 	@Test
 	void 이미지정보_읽기() throws Exception {
 		File testImage = new ClassPathResource(TEST_IMAGE_PATH).getFile();
+		BufferedImage bufferedImage = ImageIO.read(testImage);
+
+		System.out.println(bufferedImage.getWidth());
+		System.out.println(bufferedImage.getHeight());
+	}
+
+	@Test
+	void 이미지_Base64_인코딩_디코딩() throws Exception {
+		File testImage = new ClassPathResource(TEST_IMAGE_PATH).getFile();
 
 		// Base64 인코딩/디코딩
 		byte[] imageBytes = Files.readAllBytes(testImage.toPath());
