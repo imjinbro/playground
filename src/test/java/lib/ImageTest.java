@@ -21,6 +21,14 @@ class ImageTest {
 
 		System.out.println(bufferedImage.getWidth());
 		System.out.println(bufferedImage.getHeight());
+
+		long bytes = testImage.length();
+		long kilobyte = bytes / 1024;
+		long megabyte = kilobyte / 1024;
+
+		System.out.println(bytes + "byte");
+		System.out.println(kilobyte + "KB");
+		System.out.println(megabyte + "MB");
 	}
 
 	@Test
