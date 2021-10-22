@@ -1,22 +1,34 @@
 package lib;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
+import org.apache.commons.compress.utils.Lists;
+import org.apache.logging.log4j.util.Strings;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.Base64Utils;
+import org.testcontainers.shaded.org.apache.commons.io.FileUtils;
 
 class ImageTest {
 
-	private static final String TEST_IMAGE_PATH = "image/test-image.jpg";
+	private static final String TEST_JPG_PATH = "image/test-jpg.jpg";
+	private static final String TEST_PNG_PATH = "image/test-png.png";
 
 	@Test
 	void 이미지정보_읽기() throws Exception {
-		File testImage = new ClassPathResource(TEST_IMAGE_PATH).getFile();
+		File testImage = new ClassPathResource(TEST_JPG_PATH).getFile();
 		BufferedImage bufferedImage = ImageIO.read(testImage);
 
 		System.out.println(bufferedImage.getWidth());
@@ -33,7 +45,7 @@ class ImageTest {
 
 	@Test
 	void 이미지_Base64_인코딩_디코딩() throws Exception {
-		File testImage = new ClassPathResource(TEST_IMAGE_PATH).getFile();
+		File testImage = new ClassPathResource(TEST_JPG_PATH).getFile();
 
 		// Base64 인코딩/디코딩
 		byte[] imageBytes = Files.readAllBytes(testImage.toPath());
@@ -46,16 +58,29 @@ class ImageTest {
 
 
 	@Test
-	void 이미지타입_변환() throws Exception {
-		File image = new ClassPathResource(TEST_IMAGE_PATH).getFile();
+	void jpg_to_png_이미지타입_변환() throws Exception {
+		File image = new ClassPathResource(TEST_JPG_PATH).getFile();
 		BufferedImage jpgImage = ImageIO.read(image);
 
 		BufferedImage pngImage = new BufferedImage(jpgImage.getWidth(), jpgImage.getHeight(), BufferedImage.TYPE_INT_RGB);
 		pngImage.setData(jpgImage.getData());
 
 		Path path = Paths.get(this.getClass().getResource("/image").getPath());
-		File pngImageFile = new File(path.toString(), "convert.png");
+		File pngImageFile = new File(path.toString(), "convert-png.png");
 		pngImageFile.createNewFile();
 		ImageIO.write(pngImage, "png", pngImageFile);
+	}
+
+	@Test
+	void png_to_jpg_이미지타입_변환() throws Exception {
+		File image = new ClassPathResource(TEST_PNG_PATH).getFile();
+		BufferedImage pngImage = ImageIO.read(image);
+
+		BufferedImage jpgImage = new BufferedImage(pngImage.getWidth(), pngImage.getHeight(), BufferedImage.TYPE_INT_RGB);
+		jpgImage.createGraphics().drawImage(pngImage, 0, 0, Color.WHITE, null);
+
+		Path path = Paths.get(this.getClass().getResource("/image").getPath());
+		File pngImageFile = new File(path.toString(), "convert-jpg.jpg");
+		ImageIO.write(jpgImage, "jpg", pngImageFile);
 	}
 }

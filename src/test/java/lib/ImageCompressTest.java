@@ -16,7 +16,7 @@ class ImageCompressTest {
 
 	@Test
 	void dyddpccet() throws Exception {
-		File file = new ClassPathResource("/image/test-image.jpg").getFile();
+		File file = new ClassPathResource("/image/test-jpg.jpg").getFile();
 		BufferedImage image = ImageIO.read(file);
 
 		ImageWriter writer = ImageIO.getImageWritersByFormatName("jpeg").next();

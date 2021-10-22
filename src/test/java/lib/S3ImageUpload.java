@@ -40,7 +40,7 @@ class S3ImageUpload {
 			.withCredentials(localstack.getDefaultCredentialsProvider())
 			.build();
 
-		File imageFile = new ClassPathResource("/image/test-image.jpg").getFile();
+		File imageFile = new ClassPathResource("/image/test-jpg.jpg").getFile();
 		String bucketName = "test-image";
 		String dirName = "upload";
 		String fileName = dirName + "/" + imageFile.getName();
