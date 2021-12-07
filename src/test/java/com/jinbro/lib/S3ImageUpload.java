@@ -1,4 +1,4 @@
-package lib;
+package com.jinbro.lib;
 
 import static org.testcontainers.containers.localstack.LocalStackContainer.Service.S3;
 

@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'org.jinbro'
+group 'com.jinbro'
 version '0.9'
 
 repositories {
@@ -17,17 +17,20 @@ dependencies {
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.8'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.4.1'
 
     implementation "com.amazonaws:aws-java-sdk-s3:1.12.78"
     testImplementation("org.testcontainers:localstack:1.15.1")
     testImplementation("org.testcontainers:junit-jupiter:1.15.1")
+    implementation "com.drewnoakes:metadata-extractor:2.16.0"
+    implementation "org.imgscalr:imgscalr-lib:4.2"
 
     /* test */
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testImplementation "org.junit.jupiter:junit-jupiter-params:5.7.2"
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 
-    //testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
 }
 
 test {

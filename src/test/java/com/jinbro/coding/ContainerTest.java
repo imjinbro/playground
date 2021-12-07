@@ -1,4 +1,4 @@
-package coding;
+package com.jinbro.coding;
 
 import com.google.common.collect.Lists;
 import java.util.ArrayList;

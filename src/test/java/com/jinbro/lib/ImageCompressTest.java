@@ -1,4 +1,4 @@
-package lib;
+package com.jinbro.lib;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,18 +16,19 @@ class ImageCompressTest {
 
 	@Test
 	void dyddpccet() throws Exception {
-		File file = new ClassPathResource("/image/test-jpg.jpg").getFile();
+		File file = new ClassPathResource("/image/resized.jpg").getFile();
 		BufferedImage image = ImageIO.read(file);
 
 		ImageWriter writer = ImageIO.getImageWritersByFormatName("jpeg").next();
 		ImageWriteParam param = writer.getDefaultWriteParam();
 		param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-		param.setCompressionQuality(0.5f);
+		param.setCompressionQuality(0.9f);
 
 		Path path = Paths.get(this.getClass().getResource("/image").getPath());
-		File resizedImageFile = new File(path.toString(), "resized.jpg");
+		File resizedImageFile = new File(path.toString(), "resized-3.jpg");
 		FileImageOutputStream output = new FileImageOutputStream(resizedImageFile);
 		writer.setOutput(output);
+
 		IIOImage iioImage = new IIOImage(image, null, null);
 		writer.write(null, iioImage, param);
 	}

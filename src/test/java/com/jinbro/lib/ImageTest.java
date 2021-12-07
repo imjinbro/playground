@@ -1,25 +1,15 @@
-package lib;
+package com.jinbro.lib;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import javax.imageio.ImageIO;
-import org.apache.commons.compress.utils.Lists;
-import org.apache.logging.log4j.util.Strings;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.Base64Utils;
-import org.testcontainers.shaded.org.apache.commons.io.FileUtils;
 
 class ImageTest {
 
